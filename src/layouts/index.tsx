@@ -1,10 +1,13 @@
-import { Link, Outlet } from 'umi';
-import styles from './index.less';
+import { Outlet } from "umi";
+import "./index.less";
+import { NoteContext } from "@/models/note";
+import useValue from "@/models/note";
 
 export default function Layout() {
+  const value = useValue();
   return (
-    <div className={styles.navs}>
+    <NoteContext.Provider value={value}>
       <Outlet />
-    </div>
+    </NoteContext.Provider>
   );
 }
