@@ -2,11 +2,17 @@ export interface Note {
   id: string;
   title: string;
   content: string;
+  editTime: number;
 }
 
 export type Notes = Map<string, Note>;
 
-export type Action = ActionAdd | ActionDelete | ActionEdit | ActionSwitch;
+export type Action =
+  | ActionAdd
+  | ActionDelete
+  | ActionEdit
+  | ActionSwitch
+  | ActionSearch;
 
 interface ActionAdd {
   type: "add";
@@ -30,4 +36,9 @@ interface ActionSwitch {
   payload: {
     id: string;
   };
+}
+
+interface ActionSearch {
+  type: "search";
+  payload: string;
 }
