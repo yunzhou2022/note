@@ -15,3 +15,7 @@ pnpm start
 ```
 pnpm build
 ```
+
+## demo show
+
+![demo](./demo.gif)

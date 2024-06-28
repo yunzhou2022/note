@@ -34,7 +34,7 @@ function NoteItem({ note: { id, content, title } }: { note: Note }) {
       onClick={handleClick}
     >
       <div className="title">{title ?? id}</div>
-      {isMobile && <Delete />}
+      {isMobile && <Delete id={id} />}
     </div>
   );
 }

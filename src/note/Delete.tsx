@@ -1,24 +1,35 @@
 import { useMobile } from "@/models/mobile";
 import { useNotes } from "@/models/note";
 import { Button } from "antd";
+import { MouseEvent } from "react";
 
-export default () => {
+export default ({ id: _id }: { id?: string }) => {
   const [{ current }, dispatch] = useNotes();
   const { isMobile } = useMobile();
 
-  const remove = () => {
-    if (!current) {
-      return;
+  const remove = (e: MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    let id = _id;
+    if (current) {
+      id = current.id;
     }
-    dispatch({
-      type: "delete",
-      payload: { id: current.id },
-    });
+
+    if (id) {
+      dispatch({
+        type: "delete",
+        payload: { id },
+      });
+    }
   };
 
   const size = isMobile ? "small" : "middle";
   return (
-    <Button size={size} className="delete" disabled={!current} onClick={remove}>
+    <Button
+      size={size}
+      className="delete"
+      disabled={!isMobile && !current}
+      onClick={remove}
+    >
       删除
     </Button>
   );
